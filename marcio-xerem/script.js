@@ -23,7 +23,7 @@ const getJSON = async (caminho) => {
         return null;
     }
 }
-const dadosPromise = getJSON ("./dados.json")
+const dadosPromise = getJSON("./dados.json")
 const ArrProdutos = new Array();
 const carrinho = new Carrinho();
 
@@ -31,12 +31,12 @@ const init = async () => {
 
     await dadosPromise.then(dados => {
 
-    
+
         dados.forEach(produto => {
             const produtoObject = new Produto(produto.id, produto.nome, produto.marca, produto.descricao, produto.preco, produto.imagem);
             ArrProdutos.push(produtoObject);
         });
-    
+
     });
 
     console.log(ArrProdutos)
@@ -111,25 +111,29 @@ const init = async () => {
     function atualizarCarrinho() {
         carrinhoDiv.innerHTML = '';
 
-        carrinho.listaProdutos.forEach(produto => {            
+        carrinho.listaProdutos.forEach(produto => {
             carrinhoDiv.innerHTML += `
                 <div class="card-carrinho">
-
                     <span class="produto-carrinho">${produto.nome}</span>
-
                     <div class="infos-carrinho">
-
                         <span class="quantidade-carrinho">${produto.quantidade}x</span>
                         <span class="valor-individual">R$${produto.preco}</span>
-                        <span class="valor-total">R$${produto.preco * produto.quantidade}</span>
-
+                        <span class="valor-total">R$${(produto.preco * produto.quantidade).toFixed(2)}</span>
                     </div>
-
                 </div>
             `;
         });
 
-        valorTotal.innerHTML = `<h5>Valor Total: R$ ${carrinho.getValorTotal().toFixed(2)}</h5>`;
+        valorTotal.innerHTML = `
+            <div class="cupom-container">
+                <label for="inputCupomDesconto">Cupom de Desconto</label>
+                <input type="text" id="inputCupomDesconto" class="input-control inputCupomDesconto">
+                <button class="btn btn-success btn-cupomDesconto">Inserir Desconto</button><br>
+            </div>
+        `;
+
+        const btnCupomDesconto = valorTotal.querySelector('.btn-cupomDesconto');
+        btnCupomDesconto.addEventListener('click', inserirDesconto);
 
         totalCarrinho.textContent = `Your Cart (${carrinho.getQuantidadeProdutos()})`;
 
@@ -140,7 +144,13 @@ const init = async () => {
                 confirmarBtn.className = 'btn btn-success btn-confirmar';
                 confirmarBtn.textContent = 'Confirmar Pedido';
                 confirmarBtn.addEventListener('click', confirmarPedido);
-                carrinhoDiv.appendChild(confirmarBtn);
+                valorTotal.appendChild(confirmarBtn);
+
+                const textoValorTotal = document.createElement('h5');
+                textoValorTotal.className = 'textoValorTotal';
+                textoValorTotal.textContent = `Valor Total: R$ ${(carrinho.getValorTotal()).toFixed(2)}`;
+                textoValorTotal.style = 'margin-top: 10px'
+                valorTotal.appendChild(textoValorTotal);
             }
         } else if (btnConfirmar) {
             btnConfirmar.remove();
@@ -151,6 +161,35 @@ const init = async () => {
             valorTotal.innerHTML = "";
         }
     }
+
+
+    function inserirDesconto() {
+        
+        const inputCupom = document.querySelector('.inputCupomDesconto');
+        const textoValorTotal = document.querySelector('.textoValorTotal');
+        let desconto = 1;
+        switch (inputCupom.value) {
+            case 'BLACKFRIDAY':
+                desconto = 0.75;
+                alert('25% de desconto!')
+                break;
+
+            case 'DIADASMÃES':
+                desconto = 0.9;
+                alert('10% de desconto!')
+                break;
+
+            case 'CARNAVAL':
+                desconto = 0.95;
+                alert('5% de desconto!')
+                break;
+        }
+
+        console.log(desconto)
+
+        textoValorTotal.textContent = `Valor Total: R$ ${(carrinho.getValorTotal() * desconto).toFixed(2)}`;
+    }
+
 
     function confirmarPedido() {
         const modal = document.createElement('div');
@@ -194,11 +233,11 @@ const init = async () => {
 
         document.body.classList.add('modal-open');
     }
-};
+}
 
 document.addEventListener('DOMContentLoaded', init);
- 
-    
+
+
 
 
 

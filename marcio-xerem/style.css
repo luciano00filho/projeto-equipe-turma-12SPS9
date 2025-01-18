@@ -119,7 +119,7 @@ main {
 .lista-produtos {
     text-align: center;
     padding: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .lista-produtos .vazio {
@@ -229,4 +229,12 @@ main {
 /* Estilo para congelar o fundo */
 .modal-open {
     overflow: hidden;
+}
+
+.btn-success{
+    margin-top: 20px;
+}
+
+.controller.increment, .controller.decrement{
+    cursor: pointer
 }
