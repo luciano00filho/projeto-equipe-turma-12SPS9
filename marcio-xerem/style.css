@@ -11,12 +11,12 @@ main {
     padding: 40px 100px;
 }
 
-.container-produtos{
+.container-produtos {
     padding: 20px;
 }
 
 .card-produto {
-    padding:10px;
+    padding: 10px;
 }
 
 .produto img {
@@ -80,7 +80,7 @@ main {
 }
 
 
-.produto > button img {
+.produto>button img {
     width: 20px;
 }
 
@@ -96,7 +96,8 @@ main {
     font-size: 16px;
 }
 
-.nome,.preco {
+.nome,
+.preco {
     font-size: 18px;
 }
 
@@ -111,7 +112,7 @@ main {
     border-radius: 10px;
 }
 
-.carrinho h2{
+.carrinho h2 {
     color: #c53a09;
     font-weight: bold;
     font-size: 22px;
@@ -124,4 +125,76 @@ main {
 
 .lista-produtos .vazio {
     width: 250px;
+}
+
+/* Página com os detalhes da compra */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* Garantir que a modal esteja em cima */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    max-width: 600px;
+    width: 80%;
+    z-index: 1001;
+    /* Garantir que o conteúdo da modal esteja em cima */
+}
+
+.imagem-produto {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.produto-confirmacao {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.produto-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.produto-nome {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.produto-detalhes {
+    font-size: 14px;
+}
+
+/* Estilo para centralizar o botão */
+.modal-content .btn-novo-pedido {
+    display: block;
+    margin: 20px auto;
+    color: #fff;
+    background-color: #c53a09;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 80%;
+}
+
+/* Estilo para congelar o fundo */
+.modal-open {
+    overflow: hidden;
 }

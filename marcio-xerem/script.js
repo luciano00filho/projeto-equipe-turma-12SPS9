@@ -1,3 +1,5 @@
+const _$ = vid => document.getElementById(vid) || document.querySelector(vid);
+
 const init = () => {
     const produtos = [
         {imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike.png', marca: 'Nike', nome: 'Nike Dunk 3 Panda', preco: 299.99},
@@ -6,8 +8,8 @@ const init = () => {
     ];
 
     const carrinho = [];
-    const containerProdutos = document.querySelector('.container-produtos');
-    const carrinhoDiv = document.querySelector('.lista-produtos');
+    const containerProdutos = _$('.container-produtos');
+    const carrinhoDiv = _$('.lista-produtos');
 
     produtos.forEach(produto => {
         const card = criarCard(produto);
@@ -80,7 +82,57 @@ const init = () => {
             total += totalItem;
         });
 
-        carrinhoDiv.innerHTML += `<h5>Valor Total: R$ ${total.toFixed(2)}</h5>`;
+        carrinhoDiv.innerHTML += `
+            <h5>Valor Total: R$ ${total.toFixed(2)}</h5>
+            <button class="btn btn-success btn-confirmar">Confirmar Pedido</button>
+        `;
+
+        const btnConfirmar = _$('.btn-confirmar');
+        btnConfirmar.addEventListener('click', confirmarPedido);
+    }
+
+    function confirmarPedido() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.display = 'flex';
+
+        let total = 0; //Acumulador para o total das compras
+        let produtosHTML = '';
+
+        carrinho.forEach(produto => {
+            const totalItem = produto.quantidade * produto.preco;
+            produtosHTML += `
+                <div class="produto-confirmacao">
+                    <img src="${produto.imagem}" class="imagem-produto">
+                    <div class="produto-info">
+                        <span class="produto-nome">${produto.nome}</span>
+                        <span class="produto-detalhes">Quantidade: ${produto.quantidade} - Preço Unitário: R$ ${produto.preco.toFixed(2)} - Total: R$ ${totalItem.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+            total += totalItem;
+        });
+
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2>Order Confirmed</h2>
+                <p>We hope you enjoy your food!</p>
+                ${produtosHTML}
+                <h5>Valor Total do Pedido: R$ ${total.toFixed(2)}</h5>
+                <button class="btn btn-novo-pedido">Start New Order</button>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        _$('.btn-novo-pedido').addEventListener('click', () => {
+            modal.remove();
+            carrinho.length = 0; // Limpar o carrinho
+            atualizarCarrinho(); // Atualizar o carrinho visualmente
+        });
+
+        // Adiciona a classe para congelar o fundo
+        document.body.classList.add('modal-open');
     }
 };
 
