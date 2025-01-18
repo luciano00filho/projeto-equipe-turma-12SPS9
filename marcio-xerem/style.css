@@ -230,3 +230,28 @@ main {
 .modal-open {
     overflow: hidden;
 }
+
+.catalogoProduto .btn-addCart {
+    width: 10%;
+    position: absolute;
+    bottom: 0;
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(186, 184, 184);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 45px;
+    background-color: #cc4d1f;
+    font-weight: bold;
+}
+
+.detalheProduto .minImg img{ 
+
+width: 100%; 
+
+
+
+
+}
