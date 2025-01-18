@@ -3,28 +3,49 @@ import Produto from "./Produto.js";
 
 const _$ = vid => document.getElementById(vid) || document.querySelector(vid);
 
-const dados = [
-    { id: 1, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike.png', marca: 'Nike', nome: 'Nike Dunk 3 Panda', preco: 299.99, descricao: "Descrição do prod" },
-    { id: 2, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike2.png', marca: 'Nike', nome: 'Jaqueta Windrunner Masculina', preco: 579.99, descricao: "Descrição prod" },
-    { id: 3, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/adidas2.png', marca: 'Adidas', nome: 'Chuteira X SpeedFlow Campo', preco: 439.99, descricao: "Descrição prod" }
-];
+// const dados = [
+//     { id: 1, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike.png', marca: 'Nike', nome: 'Nike Dunk 3 Panda', preco: 299.99, descricao: "Descrição do prod" },
+//     { id: 2, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike2.png', marca: 'Nike', nome: 'Jaqueta Windrunner Masculina', preco: 579.99, descricao: "Descrição prod" },
+//     { id: 3, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/adidas2.png', marca: 'Adidas', nome: 'Chuteira X SpeedFlow Campo', preco: 439.99, descricao: "Descrição prod" }
+// ];
 
-const produtos = new Array();
+const getJSON = async (caminho) => {
+    try {
+        const response = await fetch(caminho);
+        if (!response.ok) {
+            throw new Error("Erro ao carregar o arquivo JSON");
+        }
+        const data = await response.json();
+        return data;
 
-dados.forEach(produto => {
-    const produtoObject = new Produto(produto.id, produto.nome, produto.marca, produto.descricao, produto.preco, produto.imagem);
-    produtos.push(produtoObject);
-});
-console.log(produtos);
+    } catch (error) {
+        console.error("Erro ao carregar o arquivo JSON:", error);
+        return null;
+    }
+}
+const dadosPromise = getJSON ("./dados.json")
+const ArrProdutos = new Array();
 const carrinho = new Carrinho();
 
-const init = () => {
+const init = async () => {
+
+    await dadosPromise.then(dados => {
+
+    
+        dados.forEach(produto => {
+            const produtoObject = new Produto(produto.id, produto.nome, produto.marca, produto.descricao, produto.preco, produto.imagem);
+            ArrProdutos.push(produtoObject);
+        });
+    
+    });
+
+    console.log(ArrProdutos)
+
     const containerProdutos = _$('.container-produtos');
     const carrinhoDiv = _$('.lista-produtos');
     const totalCarrinho = _$('.carrinho > h2');
     const valorTotal = _$('.valor-total-carrinho');
-    
-    produtos.forEach(produto => {
+    ArrProdutos.forEach(produto => {
         const card = criarCard(produto);
         containerProdutos.appendChild(card);
     });
@@ -90,11 +111,20 @@ const init = () => {
     function atualizarCarrinho() {
         carrinhoDiv.innerHTML = '';
 
-        carrinho.listaProdutos.forEach(produto => {
-            const totalItem = produto.quantidade * produto.preco;
+        carrinho.listaProdutos.forEach(produto => {            
             carrinhoDiv.innerHTML += `
-                <div class="produto-carrinho">
-                    <span>${produto.nome} - Quantidade: ${produto.quantidade} - Total: R$ ${totalItem.toFixed(2)}</span>
+                <div class="card-carrinho">
+
+                    <span class="produto-carrinho">${produto.nome}</span>
+
+                    <div class="infos-carrinho">
+
+                        <span class="quantidade-carrinho">${produto.quantidade}x</span>
+                        <span class="valor-individual">R$${produto.preco}</span>
+                        <span class="valor-total">R$${produto.preco * produto.quantidade}</span>
+
+                    </div>
+
                 </div>
             `;
         });
@@ -115,9 +145,10 @@ const init = () => {
         } else if (btnConfirmar) {
             btnConfirmar.remove();
         }
-        
+
         if (carrinho.getValorTotal() == 0) {
             carrinhoDiv.innerHTML = `<img src="assets/carrinho.png" class="vazio">`;
+            valorTotal.innerHTML = "";
         }
     }
 
@@ -166,3 +197,10 @@ const init = () => {
 };
 
 document.addEventListener('DOMContentLoaded', init);
+ 
+    
+
+
+
+
+
