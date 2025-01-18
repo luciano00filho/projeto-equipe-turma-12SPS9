@@ -1,6 +1,5 @@
 import Carrinho from "./Carrinho.js";
 import Produto from "./Produto.js";
-
 const _$ = vid => document.getElementById(vid) || document.querySelector(vid);
 
 // const dados = [
@@ -25,7 +24,9 @@ const getJSON = async (caminho) => {
 }
 const dadosPromise = getJSON ("./dados.json")
 const ArrProdutos = new Array();
-const carrinho = new Carrinho();
+const carrinho = new Carrinho(new Array());
+
+let carrinhoStorage = localStorage.getItem('carrinho');
 
 const init = async () => {
 
@@ -39,7 +40,7 @@ const init = async () => {
     
     });
 
-    console.log(ArrProdutos)
+    
 
     const containerProdutos = _$('.container-produtos');
     const carrinhoDiv = _$('.lista-produtos');
@@ -57,7 +58,7 @@ const init = async () => {
 
         card.innerHTML = `
             <div class="produto">
-                <img src="${produto.imagem}">
+                <a href='./produto.html?id=${produto.id}'><img src="${produto.imagem}"></a>
                 <button class="btn-add"> <img src="assets/icon-add-to-cart.svg" alt="">Add to cart</button>
 
                 <div class="btn-controller" style="display: none;">
@@ -121,7 +122,7 @@ const init = async () => {
 
                         <span class="quantidade-carrinho">${produto.quantidade}x</span>
                         <span class="valor-individual">R$${produto.preco}</span>
-                        <span class="valor-total">R$${produto.preco * produto.quantidade}</span>
+                        <span class="valor-total">R$${(produto.preco * produto.quantidade).toFixed(2)}</span>
 
                     </div>
 
@@ -150,8 +151,20 @@ const init = async () => {
             carrinhoDiv.innerHTML = `<img src="assets/carrinho.png" class="vazio">`;
             valorTotal.innerHTML = "";
         }
-    }
 
+
+        if (carrinhoStorage == null) {
+            let carrinhoStorage = carrinho;
+            localStorage.setItem('carrinho',JSON.stringify(carrinhoStorage));
+            console.log(JSON.parse(localStorage.getItem('carrinho')));
+        }else{
+            let carrinhoTemp = [...JSON.parse(carrinhoStorage.listaProdutos), ...carrinho.listaProdutos];
+            localStorage.setItem('carrinho', JSON.stringify(new Carrinho(carrinhoTemp)));
+            console.log(JSON.parse(localStorage.getItem('carrinho')));
+        } 
+
+    }
+    console.log(carrinhoStorage)
     function confirmarPedido() {
         const modal = document.createElement('div');
         modal.className = 'modal';

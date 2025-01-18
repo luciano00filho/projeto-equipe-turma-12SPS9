@@ -4,8 +4,8 @@ export default class Carrinho {
 
     listaProdutos;
 
-    constructor() {
-        this.listaProdutos = [];
+    constructor(vetor) {
+        this.listaProdutos = vetor;
     }
 
     addProduto(produto) {
