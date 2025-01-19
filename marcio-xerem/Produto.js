@@ -8,14 +8,14 @@ export default class Produto {
     imagem;
     quantidade;
 
-    constructor(id, nome, marca, descricao, preco, imagem) {
+    constructor(id, nome, marca, descricao, preco, imagem, quantidade) {
         this.id = id;
         this.nome = nome;
         this.marca = marca;
         this.descricao = descricao;
         this.preco = preco;
         this.imagem = imagem;
-        this.quantidade = 0;
+        this.quantidade = quantidade;
     }
 
     incrementar() {

@@ -15,23 +15,25 @@
 
 <body>
 
-    <main class="row">
+    <main class="row" style="height: 100vh;">
+
+        <div class="pagina-inicial">
+            <a href="./index.html"> <img src="https://cdn-icons-png.flaticon.com/512/271/271218.png" alt=""> Página inicial</a>
+        </div>
 
         <div class="detalheProduto col-6">
 
-            <img src="assets/carrinho.png" class="vazio">
+            <img src="https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F157609914-628-628%2F-cta-performance-510-pto-pv24-2xl-preto-3g1.jpg%3Fv%3D638586306257200000" class="vazio">
             
             <div class="row">
 
-                <div class="minImg col-3"> <img src="assets/carrinho.png" class="vazio"></div>
+                <div class="minImg col-3"> <img src="https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F157609914-628-628%2F-cta-performance-510-pto-pv24-2xl-preto-3g1.jpg%3Fv%3D638586306257200000" class="vazio"></div>
 
-                <div class="minImg col-3"> <img src="assets/carrinho.png" class="vazio"></div>
+                <div class="minImg col-3"> <img src="https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F157609914-628-628%2F-cta-performance-510-pto-pv24-2xl-preto-3g1.jpg%3Fv%3D638586306257200000" class="vazio"></div>
 
-                <div class="minImg col-3"> <img src="assets/carrinho.png" class="vazio"></div>
+                <div class="minImg col-3"> <img src="https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F157609914-628-628%2F-cta-performance-510-pto-pv24-2xl-preto-3g1.jpg%3Fv%3D638586306257200000" class="vazio"></div>
 
-                <div class="minImg col-3"> <img src="assets/carrinho.png" class="vazio"></div>
-
-
+                <div class="minImg col-3"> <img src="https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F157609914-628-628%2F-cta-performance-510-pto-pv24-2xl-preto-3g1.jpg%3Fv%3D638586306257200000" class="vazio"></div>
 
             </div>
 
@@ -40,7 +42,7 @@
         </div>
 
         <div class="catalogoProduto col-6">
-            <div class="carrinho">
+            <div class="infos-produto">
                 <h4>SNEAKER COMPANY</h4>
 
                 <h1>Fall Limited Edition Sneakers</h1>
@@ -48,17 +50,34 @@
                 <p>These low-profile Sneakers are your perfect casual wear companion.Featuring a durable rubber outer
                     sole,they'll withstand everything the weather can offer.</p>
 
-                <span>$125.00 50%</span>
                 <span>$250.00</span>
 
-                <button class="btn-addCart">Add to cart</button>
+                <div class="cart-manager">
 
+                    <div class="controlador row">
 
+                        <div class="col-3 decrement"><img src="assets/icon-minus.svg" alt=""></div>
+
+                        <span class="col-6 contador">0</span>
+
+                        <div class="col-3 increment"><img src="assets/icon-plus.svg" alt=""></div>
+
+                    </div>
+
+                    <div class="addCart-individual desabilitado">
+
+                        <img src="assets/icon-cart.svg" alt="">
+
+                        <span>Adicionar ao carrinho</span>
+
+                    </div>
+
+                </div>
 
             </div>
 
     </main>
-    <script src="script.js" type="module"></script>
+    <script src="produtoScript.js" type="module"></script>
 </body>
 
 </html>
