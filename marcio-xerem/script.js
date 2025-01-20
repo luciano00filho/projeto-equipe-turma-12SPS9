@@ -145,9 +145,13 @@ const init = async () => {
 
         valorTotal.innerHTML = `
             <div class="cupom-container">
-                <label for="inputCupomDesconto">Cupom de Desconto</label>
-                <input type="text" id="inputCupomDesconto" class="input-control inputCupomDesconto">
-                <button class="btn btn-success btn-cupomDesconto">Inserir Desconto</button><br>
+                <div>
+                    <label for="inputCupomDesconto">Cupom de Desconto</label>
+                    <div>
+                        <input type="text" id="inputCupomDesconto" class="input-control inputCupomDesconto" placeholder='Digite o cupom'>
+                        <button class="btn-cupomDesconto">Aplicar</button><br>
+                    </div>
+                </div>
             </div>
         `;
 
@@ -160,14 +164,19 @@ const init = async () => {
         if (carrinho.getValorTotal() > 0) {
             if (!btnConfirmar) {
                 const confirmarBtn = document.createElement('button');
-                confirmarBtn.className = 'btn btn-success btn-confirmar';
+                confirmarBtn.className = 'btn-confirmar';
                 confirmarBtn.textContent = 'Confirmar Pedido';
                 confirmarBtn.addEventListener('click', confirmarPedido);
                 valorTotal.appendChild(confirmarBtn);
 
-                const textoValorTotal = document.createElement('h5');
+                const textoValorTotal = document.createElement('div');
+                const spanValorTotal = document.createElement('span');
+                const pValorTotal = document.createElement('p');
+                textoValorTotal.appendChild(spanValorTotal);
+                textoValorTotal.appendChild(pValorTotal);
                 textoValorTotal.className = 'textoValorTotal';
-                textoValorTotal.textContent = `Valor Total: R$ ${(carrinho.getValorTotal()).toFixed(2)}`;
+                spanValorTotal.textContent = `Total do Pedido`;
+                pValorTotal.textContent = `R$${(carrinho.getValorTotal()).toFixed(2)}`
                 textoValorTotal.style = 'margin-top: 10px'
                 valorTotal.appendChild(textoValorTotal);
             }
@@ -185,7 +194,7 @@ const init = async () => {
     function inserirDesconto() {
 
         const inputCupom = document.querySelector('.inputCupomDesconto');
-        const textoValorTotal = document.querySelector('.textoValorTotal');
+        const pValorTotal = document.querySelector('.textoValorTotal > p');
         let desconto = 1;
         switch (inputCupom.value) {
             case 'BLACKFRIDAY':
@@ -206,7 +215,7 @@ const init = async () => {
 
         console.log(desconto)
 
-        textoValorTotal.textContent = `Valor Total: R$ ${(carrinho.getValorTotal() * desconto).toFixed(2)}`;
+        pValorTotal.textContent = `R$${(carrinho.getValorTotal() * desconto).toFixed(2)}`;
     }
 
 
@@ -245,6 +254,7 @@ const init = async () => {
         document.body.appendChild(modal);
 
         _$('.btn-novo-pedido').addEventListener('click', () => {
+            document.body.classList.remove('modal-open');
             modal.remove();
             carrinho.limpar();
             atualizarStorage();

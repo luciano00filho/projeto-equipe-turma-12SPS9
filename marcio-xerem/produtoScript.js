@@ -108,6 +108,7 @@ async function init() {
 
             carrinho.addProduto(produto);
             addCartIndividual.classList.remove('habilitado');
+            addCartIndividual.classList.add('desabilitado')
             atualizarStorage();
 
         }

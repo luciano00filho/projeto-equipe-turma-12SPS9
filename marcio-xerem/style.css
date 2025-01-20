@@ -131,7 +131,7 @@ main {
 .lista-produtos {
     text-align: center;
     padding: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .lista-produtos .vazio {
@@ -167,9 +167,65 @@ main {
 }
 
 .valor-total-carrinho {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
+.cupom-container {
+    order: 1;
+}
+
+.cupom-container > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cupom-container > div > div >* {
+    padding: 5px;
+    border: 1px solid #858383;
+}
+
+.cupom-container > div > div > input {
+    width: 60%;
+}
+
+.cupom-container > div > div > button {
+    width: 30%;
+}
+
+.btn-cupomDesconto {
+   background-color: #cc4d1f;
+   border: 1px solid #cc4d1f !important;
+   color: #fff;
+}
+
+.textoValorTotal {
+    order: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textoValorTotal > span {
+    color: #7a7979;
+    font-size: 18px;
+}
+
+.textoValorTotal p {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.btn-confirmar {
+    order: 2;
+    border: 0;
+    background-color: #cc4d1f;
+    color: #fff;
+    border-radius: 30px;
+    padding: 15px;
+    font-size: 18px;
+}
 
 /* Página com os detalhes da compra */
 
