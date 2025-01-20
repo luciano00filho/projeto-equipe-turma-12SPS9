@@ -1,0 +1,110 @@
+[
+    {
+        "id":1,
+        "nome": "Camiseta Masculina de Treino Performance",
+        "preco": 119.99,
+        "marca": "DOMYOS",
+        "tamanho":", GG, G3",
+        "descricao": "Testado e aprovado por Arthur, Edouard, Guillaume, Greg, Hafid, Jean-Claude, Jean-Baptiste, Louis-Paul, Nathanael, Thomas e Sullyvan da FWA Cross Fit. Dê tudo de si durante seus WODs! Com esta t-shirt cuidaremos do seu conforto graças ao tecido elástico, respirável, macio e leve.", 
+        "imagem": "https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F157609914-628-628%2F-cta-performance-510-pto-pv24-2xl-preto-3g1.jpg%3Fv%3D638586306257200000"
+    },
+    {
+        "id":2,
+        "nome": "Camiseta masculina de trilha",
+        "preco": 79.99,
+        "marca": "QUECHUA",
+        "tamanho":", GG, G3",
+        "descricao": "Os nossos criadores caminheiros ecodesenharam esta t-shirt NH100 para as caminhadas regulares na planície, na floresta ou no litoral com tempo ameno.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F84144112-628-628%2Ftee-shirt-nh500-heather-dark-men-l-cinza-g1.jpg%3Fv%3D638363614066270000"
+    },
+    {
+        "id":3,
+        "nome": "Camiseta Masculina de Treino",
+        "preco": 39.99,
+        "marca": "DOMYOS",
+        "tamanho":", GG, G3",
+        "descricao": "As nossas equipes desenvolveram esta camiseta de cardio training para te acompanhar nos primeiros passos... e te levar ainda mais longe! Esta é a camiseta básica que você precisa ter no seu guarda-roupa! Seu design simples, toque suave e tecido respirável fazem dela um item indispensável para o cardio training.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F150502416-628-628%2Fcamiseta-masculina-de-treino-cardio-100-cinza-p1.jpg%3Fv%3D638563103059600000"
+    },
+    {
+        "id":4,
+        "nome": "Mochila de Viagem 50L Trekking",
+        "preco":  399.99,
+        "marca": "FORCLAZ",
+        "cor":"preto",
+        "descricao": "Desenvolvemos esta mochila para todas as primeiras aventuras ao ar livre, seja em trilhas na montanha ou em viagens até o outro lado do mundo. Uma mochila simples e funcional, graças aos seus bolsos e ao acesso frontal, prática para saídas ocasionais que exigem uma capacidade de 50L.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F38269871-628-628%2Fbackpack-forclaz-50-a-backpack-no-size1.jpg%3Fv%3D638230352152530000"
+    },
+    {
+        "id":5,
+        "nome": "Mochila de Trilha NH100 20L",
+        "preco": 159.99,
+        "marca": "QUECHUA",
+        "cor":"amarelo",
+        "descricao": "Nossa equipe de praticantes desenhou esta mochila de 20 litros para acompanhar as suas caminhadas ocasionais em planícies, florestas ou costa em tempo seco. Procura uma mochila para uma trilha leve? O modelo NH100, é confortável e possui muitos compartimentos.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F105293706-628-628%2Fbackpack-nh-arpenaz-20l-blue-grey-20l-unica-unico1.jpg%3Fv%3D638400540436500000"
+    },
+    {
+        "id":6,
+        "nome": "Mochila de Trilha 30L NH Arpenaz",
+        "preco": 229.99,
+        "marca": "QUECHUA",
+        "cor":"cinza",
+        "descricao": "Os nossos criadores caminheiros ecodesenharam esta mochila NH Arpenaz 100 30 litros para as caminhadas ocasionais na planície, floresta ou litoral. À procura de uma mochila para uma escapadela em plena natureza? O nosso modelo NH Arpenaz100 30L, confortável e com diversos acessórios, acompanha as suas caminhadas.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F159196348-628-628%2Fbackpack-nh100-30l-khaki-30l-preto1.jpg%3Fv%3D638593216972870000"
+    },
+    {
+        "id":7,
+        "nome": "Bicicleta MTB Aro 29 St100MS",
+        "preco": 1199.99,
+        "marca": "ROCKRIDER",
+        "tamanho":"",
+        "descricao": " Desenvolvida para o ciclista de MTB que busca uma ótima bicicleta aro 29 para mountain bike. Com transmissão microSHIFT 21 marchas, suspensão com trava, freios a disco mecânicos e rodas com folha dupla aro 29.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F73324890-628-628%2Fbicicleta-mtb-aro-29%5C--st-100ms-preto-192.jpg%3Fv%3D638348811460830000"
+    },
+    {
+        "id":8,
+        "nome": "Bicicleta Masculina Aro 29 MS 500 Microshift ",
+        "preco": 799.99,
+        "marca": "RIVERSIDE",
+        "tamanho":"",
+        "descricao": "Desenvolvida para o ciclista que busca uma bicicleta aro 29 para lazer e deslocamentos em vias asfaltadas ou terra batida. A bicicleta Riverside 500MS oferece transmissão Microshift com 7 velocidades, freios v-brake em alumínio, rodas parede dupla em alumínio com pneus mistos e suspensão com 30mm de curso.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F72008637-628-628%2F--riverside-500-fem-m-g1.jpg%3Fv%3D638346182736230000"
+    },
+    {
+        "id":9,
+        "nome": "Bicicleta Feminina MS 520",
+        "preco": 899.99,
+        "marca": "RIVERSIDE",
+        "tamanho":"",
+        "descricao": "Desenvolvido para a ciclista que busca uma bicicleta aro 700 para lazer e deslocamentos em vias asfaltadas ou terra batida. A bicicleta Riverside 520 oferece transmissão microSHIFT com 8 velocidades, freios v-brakes Logan LB-915 em alumínio, Aro 700c de folha-dupla e pneus Vee Rubber VRB-212 700x42c com proteção anti-furo.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F72006618-628-628%2Fbicicleta-feminina-riverside-520-ms-unica-m1.jpg%3Fv%3D638346168918500000"
+    },
+    {
+        "id":10,
+        "nome": "Tênis Masculino de Corrida Float Maxxi 2",
+        "preco": 455.99,
+        "marca": "FILA",
+        "tamanho":[36,37,38,39],
+        "descricao": "Indicado para atletas de todos os níveis que praticam longão, participam de provas longas de até 42 km e ultramaratonas. Tênis Fila Float Maxxi 2 oferece amortecimento elevado e alta performance para você melhorar seu desempenho. Com um design moderno, maximalista e tecnológico, ele garante mais conforto.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F147570192-628-628%2F-tn-fila-float-maxxi-2-pro-f-uk-7-eu41-unica-35-br1.jpg%3Fv%3D638554597470930000"
+    },
+    {
+        "id":11,
+        "nome": "Tênis de Caminhada Ultraboost",
+        "preco": 759.99,
+        "marca": "ADIDAS",
+        "tamanho":[39,40,41,42,43,44],
+        "descricao": "Responsividade garantida e feito parcialmente com materiais reciclados Seja nas pistas ou nos treinos mais desafiadores, experimente um impulso a cada passo com este tênis de corrida Ultraboost adidas.", 
+        "imagem":"https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F164989596-628-628%2Ftenis-de-caminhada-ultraboost-adidas-preta-39-br1.jpg%3Fv%3D638717621942770000"
+    },
+    {
+        "id":12,
+        "nome": "Tênis Unisex de Corrida Corre 4",
+        "preco": 289.99,
+        "marca": "OLYMPIKUS",
+        "tamanho":[36,37,38,39,41,42,43,44],
+        "descricao": "Tênis feito por corredores brasileiros chega à quarta edição Tênis feito por corredores brasileiros chega à quarta edição", 
+        "imagem": "https://decathlonstore.vtexassets.com/unsafe/1256x1256/center/middle/https%3A%2F%2Fdecathlonpro.vtexassets.com%2Farquivos%2Fids%2F161601446-628-628%2F-tn-olk-corre-4-uni-pto-b-uk-11---eu-46-34-br1.jpg%3Fv%3D638622849280830000"
+    }
+]
