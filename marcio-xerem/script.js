@@ -3,12 +3,7 @@ import Produto from "./Produto.js";
 
 const _$ = vid => document.getElementById(vid) || document.querySelector(vid);
 
-// const dados = [
-//     { id: 1, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike.png', marca: 'Nike', nome: 'Nike Dunk 3 Panda', preco: 299.99, descricao: "Descrição do prod" },
-//     { id: 2, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike2.png', marca: 'Nike', nome: 'Jaqueta Windrunner Masculina', preco: 579.99, descricao: "Descrição prod" },
-//     { id: 3, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/adidas2.png', marca: 'Adidas', nome: 'Chuteira X SpeedFlow Campo', preco: 439.99, descricao: "Descrição prod" }
-// ];
-
+//função para consumir o JSON
 const getJSON = async (caminho) => {
     try {
         const response = await fetch(caminho);
@@ -59,8 +54,7 @@ const init = async () => {
         containerProdutos.appendChild(card);
     });
 
-    atualizarCarrinho();
-
+    //Impressão dos produtos no HTML
     function criarCard(produto) {
         const card = document.createElement('div');
         card.className = 'card-produto col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12';
@@ -128,6 +122,7 @@ const init = async () => {
         return card;
     }
 
+    //Função que adiciona os produtos inseridos no carrinho ao menu lateral da página
     function atualizarCarrinho() {
         carrinhoDiv.innerHTML = '';
 
@@ -191,7 +186,7 @@ const init = async () => {
         }
     }
 
-
+    // Função que aplica o desconto para os cupons BLACKFRIDAY, DIADASMÃES, CARNAVAL
     function inserirDesconto() {
 
         const inputCupom = document.querySelector('.inputCupomDesconto');
@@ -221,6 +216,7 @@ const init = async () => {
 
 
     function confirmarPedido() {
+        //Modal foi a função utilizada para sobrepor a página principal, mostrando a tela de confirmação do pedido
         const modal = document.createElement('div');
         modal.className = 'modal';
         modal.style.display = 'flex';
@@ -269,6 +265,7 @@ const init = async () => {
 
 document.addEventListener('DOMContentLoaded', init);
 
+// Função para verificar se o cliente possui um carrinho ativo
 function iniciarCarrinho() {
 
     const valoresCarrinho = new Array();
@@ -289,6 +286,7 @@ function iniciarCarrinho() {
 
 }
 
+// Associa o carrinho com o local storage
 function atualizarStorage() {
 
     carrinhoStorage.setItem('carrinho', JSON.stringify(carrinho.listaProdutos));
