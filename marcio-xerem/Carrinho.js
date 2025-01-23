@@ -10,7 +10,6 @@ export default class Carrinho {
 
     addProduto(produto) {
         this.listaProdutos.push(produto);
-        produto.incrementar();
     }
 
     removerProduto(produto) {

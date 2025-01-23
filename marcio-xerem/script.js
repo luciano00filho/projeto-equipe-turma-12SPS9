@@ -98,6 +98,7 @@ const init = async () => {
         btnAddToCart.addEventListener('click', () => {
             btnController.style.display = 'flex';
             btnAddToCart.style.display = 'none';
+            produto.incrementar();
             carrinho.addProduto(produto);
             quantidadeElement.textContent = produto.quantidade;
             atualizarStorage();
@@ -241,12 +242,13 @@ const init = async () => {
             total += totalItem;
         });
 
+        const modalValorTotal = document.querySelector('.textoValorTotal > p');
         modal.innerHTML = `
             <div class="modal-content">
                 <h2>Pedido Confirmado</h2>
                 <p>Agradecemos por comprar conosco!</p>
                 ${produtosHTML}
-                <h5>Valor Total do Pedido: R$ ${total.toFixed(2)}</h5>
+                <h5>Valor Total do Pedido: R$ ${modalValorTotal.textContent}</h5>
                 <button class="btn btn-novo-pedido">Iniciar Novo Pedido</button>
             </div>
         `;
