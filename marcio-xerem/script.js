@@ -54,6 +54,8 @@ const init = async () => {
         containerProdutos.appendChild(card);
     });
 
+    atualizarCarrinho();
+
     //Impressão dos produtos no HTML
     function criarCard(produto) {
         const card = document.createElement('div');
@@ -116,6 +118,7 @@ const init = async () => {
             produto.incrementar();
             quantidadeElement.textContent = produto.quantidade;
             atualizarStorage();
+            console.log(carrinhoStorage);
             atualizarCarrinho();
         });
 
