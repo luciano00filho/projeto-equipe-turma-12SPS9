@@ -4,8 +4,13 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #f2e9e1 !important;
+}
+
 main {
     width: 100%;
+    margin: 0 auto !important;
     background-color: #f2e9e1;
     padding: 40px 100px;
 }
@@ -16,16 +21,22 @@ main {
 
 .card-produto {
     padding:10px;
+    height: 100%;
 }
 
-.produto img {
+.produto > a > img {
     width: 100%;
     height: 200px;
     border-radius: 15px;
 }
 
+.produto a {
+    width: 100%;
+    flex-grow: 1;
+}
+
 .produto {
-    padding: 10px 20px;
+    padding: 10px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,6 +51,7 @@ main {
     padding: 10px 20px;
     border-radius: 30px;
     border: 1px solid rgb(186, 184, 184);
+    background-color: #f3d8bf;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -119,7 +131,7 @@ main {
 .lista-produtos {
     text-align: center;
     padding: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .lista-produtos .vazio {
@@ -155,9 +167,65 @@ main {
 }
 
 .valor-total-carrinho {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
+.cupom-container {
+    order: 1;
+}
+
+.cupom-container > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cupom-container > div > div >* {
+    padding: 5px;
+    border: 1px solid #858383;
+}
+
+.cupom-container > div > div > input {
+    width: 60%;
+}
+
+.cupom-container > div > div > button {
+    width: 30%;
+}
+
+.btn-cupomDesconto {
+   background-color: #cc4d1f;
+   border: 1px solid #cc4d1f !important;
+   color: #fff;
+}
+
+.textoValorTotal {
+    order: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.textoValorTotal > span {
+    color: #7a7979;
+    font-size: 18px;
+}
+
+.textoValorTotal p {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.btn-confirmar {
+    order: 2;
+    border: 0;
+    background-color: #cc4d1f;
+    color: #fff;
+    border-radius: 30px;
+    padding: 15px;
+    font-size: 18px;
+}
 
 /* Página com os detalhes da compra */
 
@@ -231,10 +299,245 @@ main {
     overflow: hidden;
 }
 
-.btn-success{
-    margin-top: 20px;
+.catalogoProduto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.controller.increment, .controller.decrement{
-    cursor: pointer
+.detalheProduto {
+    text-align: center;
+}
+
+.detalheProduto img {
+    border-radius: 30px;
+}
+
+.detalheProduto > img {
+    width: 90%;
+    margin-bottom: 40px;
+    height: 600px;
+}
+
+.infos-produto {
+    padding: 40px;
+}
+
+.infos-produto > h4 {
+    color: #a8a8a8;
+}
+
+.infos-produto > h1 {
+    font-size: 60px;
+    margin-bottom: 50px;
+}
+
+.infos-produto > p {
+    font-size: 24px;
+    color: #a19c9c;
+}
+
+.infos-produto > span {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.minImg {
+    padding: 10px;
+}
+
+.detalheProduto .minImg img{ 
+
+width: 80%; 
+
+}
+
+.cart-manager {
+    margin-top: 50px;
+    display: flex;
+    gap: 60px;
+}
+
+.controlador {
+    width: 30%;
+    padding: 20px 25px;
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    user-select: none;
+    display: flex;
+}
+
+.controlador > div, .controlador > span {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlador img {
+    width: 15px;
+}
+
+.controlador > div {
+    cursor: pointer;
+}
+
+.addCart-individual {
+    background-color: #ee7010;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    gap: 20px;
+}
+
+.addCart-individual span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.addCart-individual img {
+    
+    filter: brightness(0);
+
+}
+
+.pagina-inicial {
+    margin-bottom: 20px;
+}
+
+.pagina-inicial > a {
+    text-decoration: none;
+    color: #000;
+}
+
+.pagina-inicial > a > img {
+    width: 20px;
+}
+
+.desabilitado {
+    opacity: 0.4;
+}
+
+.habilitado {
+    opacity: 1;
+}
+
+@media screen and (max-width:1400px) and (min-width:1200px) {
+
+    .btn-add {
+        font-size: 12px;
+    }
+
+    .btn-add > img {
+        width: 15px !important;
+    }
+
+}
+
+@media  screen and (max-width:1300px) {
+    
+    .controlador {
+        padding: 20px 15px;
+    }
+
+}
+
+@media screen and (max-width:800px) {
+    
+    .detalheProduto > img {
+        width: 100%;
+        height: 400px;
+    }
+
+    .infos-produto > h4 {
+        font-size: 18px;
+    }
+    
+    .infos-produto > h1 {
+        font-size: 42px;
+        margin-bottom: 50px;
+    }
+    
+    .infos-produto > p {
+        font-size: 20px;
+        color: #a19c9c;
+    }
+    
+    .infos-produto > span {
+        font-weight: bold;
+        font-size: 28px;
+    }
+
+    main {
+        padding: 30px;
+    }
+
+}
+
+@media screen and (max-width:1000px) {
+
+    .btn-add {
+        font-size: 12px;
+    }
+
+    .btn-add > img {
+        width: 15px !important;
+    }
+
+}
+
+@media screen and (max-width:480px) {
+
+    .container-produtos {
+        padding: 0px;
+    }
+
+    .card-produto {
+        padding: 0;
+    }
+
+
+    main {
+        padding: 30px;
+    }
+
+    .infos-produto > h4 {
+        font-size: 18px;
+    }
+    
+    .infos-produto > h1 {
+        font-size: 34px;
+        margin-bottom: 50px;
+    }
+    
+    .infos-produto > p {
+        font-size: 20px;
+        color: #a19c9c;
+    }
+    
+    .infos-produto > span {
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .controlador {
+        padding: 0;
+    }
+
+    .addCart-individual {
+        width: 60%;
+    }
+
+}
+
+.controller{
+    cursor: pointer ;
 }

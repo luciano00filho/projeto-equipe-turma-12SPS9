@@ -4,13 +4,12 @@ export default class Carrinho {
 
     listaProdutos;
 
-    constructor() {
-        this.listaProdutos = [];
+    constructor(vetor) {
+        this.listaProdutos = Array.isArray(vetor) ? vetor : [];
     }
 
     addProduto(produto) {
         this.listaProdutos.push(produto);
-        produto.incrementar();
     }
 
     removerProduto(produto) {

@@ -3,12 +3,7 @@ import Produto from "./Produto.js";
 
 const _$ = vid => document.getElementById(vid) || document.querySelector(vid);
 
-// const dados = [
-//     { id: 1, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike.png', marca: 'Nike', nome: 'Nike Dunk 3 Panda', preco: 299.99, descricao: "Descrição do prod" },
-//     { id: 2, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/nike2.png', marca: 'Nike', nome: 'Jaqueta Windrunner Masculina', preco: 579.99, descricao: "Descrição prod" },
-//     { id: 3, imagem: 'https://nossaempresa.netlify.app/loja/assets/produtos/adidas2.png', marca: 'Adidas', nome: 'Chuteira X SpeedFlow Campo', preco: 439.99, descricao: "Descrição prod" }
-// ];
-
+//função para consumir o JSON
 const getJSON = async (caminho) => {
     try {
         const response = await fetch(caminho);
@@ -25,7 +20,9 @@ const getJSON = async (caminho) => {
 }
 const dadosPromise = getJSON("./dados.json")
 const ArrProdutos = new Array();
-const carrinho = new Carrinho();
+
+const carrinhoStorage = localStorage;
+const carrinho = iniciarCarrinho();
 
 const init = async () => {
 
@@ -33,36 +30,46 @@ const init = async () => {
 
 
         dados.forEach(produto => {
-            const produtoObject = new Produto(produto.id, produto.nome, produto.marca, produto.descricao, produto.preco, produto.imagem);
-            ArrProdutos.push(produtoObject);
+
+            const produtoNoCarrinho = carrinho.listaProdutos.find(prod => prod.id === produto.id);
+
+            if (produtoNoCarrinho) {
+                ArrProdutos.push(produtoNoCarrinho);
+            } else {
+                const produtoObject = new Produto(produto.id, produto.nome, produto.marca, produto.descricao, produto.preco, produto.imagem, 0);
+                ArrProdutos.push(produtoObject);
+            }
+
         });
 
     });
-
-    console.log(ArrProdutos)
 
     const containerProdutos = _$('.container-produtos');
     const carrinhoDiv = _$('.lista-produtos');
     const totalCarrinho = _$('.carrinho > h2');
     const valorTotal = _$('.valor-total-carrinho');
+
     ArrProdutos.forEach(produto => {
         const card = criarCard(produto);
         containerProdutos.appendChild(card);
     });
 
+    atualizarCarrinho();
+
+    //Impressão dos produtos no HTML
     function criarCard(produto) {
         const card = document.createElement('div');
-        card.className = 'card-produto col-4';
+        card.className = 'card-produto col-xxl-4 col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12';
         card.dataset.id = produto.id;
 
         card.innerHTML = `
             <div class="produto">
-                <img src="${produto.imagem}">
-                <button class="btn-add"> <img src="assets/icon-add-to-cart.svg" alt="">Add to cart</button>
+                <a href='./produtos.html?id=${produto.id}'> <img src="${produto.imagem}"> </a>
+                <button class="btn-add"> <img src="assets/icon-add-to-cart.svg" alt="">Comprar</button>
 
                 <div class="btn-controller" style="display: none;">
                     <div class="controller decrement"><img src="assets/icon-decrement-quantity.svg"></div>
-                    <span class="quantidade">1</span>
+                    <span class="quantidade">${produto.quantidade}</span>
                     <div class="controller increment"><img src="assets/icon-increment-quantity.svg"></div>
                 </div>
             </div>
@@ -79,11 +86,18 @@ const init = async () => {
         const btnDecrement = card.querySelector('.decrement');
         const btnIncrement = card.querySelector('.increment');
 
+        if (produto.quantidade > 0) {
+            btnController.style.display = 'flex';
+            btnAddToCart.style.display = 'none';
+        }
+
         btnAddToCart.addEventListener('click', () => {
             btnController.style.display = 'flex';
             btnAddToCart.style.display = 'none';
+            produto.incrementar();
             carrinho.addProduto(produto);
             quantidadeElement.textContent = produto.quantidade;
+            atualizarStorage();
             atualizarCarrinho();
         });
 
@@ -96,18 +110,22 @@ const init = async () => {
                 btnAddToCart.style.display = 'flex';
                 carrinho.removerProduto(produto);
             }
+            atualizarStorage();
             atualizarCarrinho();
         });
 
         btnIncrement.addEventListener('click', () => {
             produto.incrementar();
             quantidadeElement.textContent = produto.quantidade;
+            atualizarStorage();
+            console.log(carrinhoStorage);
             atualizarCarrinho();
         });
 
         return card;
     }
 
+    //Função que adiciona os produtos inseridos no carrinho ao menu lateral da página
     function atualizarCarrinho() {
         carrinhoDiv.innerHTML = '';
 
@@ -126,29 +144,38 @@ const init = async () => {
 
         valorTotal.innerHTML = `
             <div class="cupom-container">
-                <label for="inputCupomDesconto">Cupom de Desconto</label>
-                <input type="text" id="inputCupomDesconto" class="input-control inputCupomDesconto">
-                <button class="btn btn-success btn-cupomDesconto">Inserir Desconto</button><br>
+                <div>
+                    <label for="inputCupomDesconto">Cupom de Desconto</label>
+                    <div>
+                        <input type="text" id="inputCupomDesconto" class="input-control inputCupomDesconto" placeholder='Digite o cupom'>
+                        <button class="btn-cupomDesconto">Aplicar</button><br>
+                    </div>
+                </div>
             </div>
         `;
 
         const btnCupomDesconto = valorTotal.querySelector('.btn-cupomDesconto');
         btnCupomDesconto.addEventListener('click', inserirDesconto);
 
-        totalCarrinho.textContent = `Your Cart (${carrinho.getQuantidadeProdutos()})`;
+        totalCarrinho.textContent = `Seu carrinho (${carrinho.getQuantidadeProdutos()})`;
 
         const btnConfirmar = _$('.btn-confirmar');
         if (carrinho.getValorTotal() > 0) {
             if (!btnConfirmar) {
                 const confirmarBtn = document.createElement('button');
-                confirmarBtn.className = 'btn btn-success btn-confirmar';
+                confirmarBtn.className = 'btn-confirmar';
                 confirmarBtn.textContent = 'Confirmar Pedido';
                 confirmarBtn.addEventListener('click', confirmarPedido);
                 valorTotal.appendChild(confirmarBtn);
 
-                const textoValorTotal = document.createElement('h5');
+                const textoValorTotal = document.createElement('div');
+                const spanValorTotal = document.createElement('span');
+                const pValorTotal = document.createElement('p');
+                textoValorTotal.appendChild(spanValorTotal);
+                textoValorTotal.appendChild(pValorTotal);
                 textoValorTotal.className = 'textoValorTotal';
-                textoValorTotal.textContent = `Valor Total: R$ ${(carrinho.getValorTotal()).toFixed(2)}`;
+                spanValorTotal.textContent = `Total do Pedido`;
+                pValorTotal.textContent = `R$${(carrinho.getValorTotal()).toFixed(2)}`
                 textoValorTotal.style = 'margin-top: 10px'
                 valorTotal.appendChild(textoValorTotal);
             }
@@ -162,11 +189,11 @@ const init = async () => {
         }
     }
 
-
+    // Função que aplica o desconto para os cupons BLACKFRIDAY, DIADASMÃES, CARNAVAL
     function inserirDesconto() {
-        
+
         const inputCupom = document.querySelector('.inputCupomDesconto');
-        const textoValorTotal = document.querySelector('.textoValorTotal');
+        const pValorTotal = document.querySelector('.textoValorTotal > p');
         let desconto = 1;
         switch (inputCupom.value) {
             case 'BLACKFRIDAY':
@@ -187,11 +214,12 @@ const init = async () => {
 
         console.log(desconto)
 
-        textoValorTotal.textContent = `Valor Total: R$ ${(carrinho.getValorTotal() * desconto).toFixed(2)}`;
+        pValorTotal.textContent = `R$${(carrinho.getValorTotal() * desconto).toFixed(2)}`;
     }
 
 
     function confirmarPedido() {
+        //Modal foi a função utilizada para sobrepor a página principal, mostrando a tela de confirmação do pedido
         const modal = document.createElement('div');
         modal.className = 'modal';
         modal.style.display = 'flex';
@@ -213,12 +241,13 @@ const init = async () => {
             total += totalItem;
         });
 
+        const modalValorTotal = document.querySelector('.textoValorTotal > p');
         modal.innerHTML = `
             <div class="modal-content">
                 <h2>Pedido Confirmado</h2>
                 <p>Agradecemos por comprar conosco!</p>
                 ${produtosHTML}
-                <h5>Valor Total do Pedido: R$ ${total.toFixed(2)}</h5>
+                <h5>Valor Total do Pedido: R$ ${modalValorTotal.textContent}</h5>
                 <button class="btn btn-novo-pedido">Iniciar Novo Pedido</button>
             </div>
         `;
@@ -226,8 +255,10 @@ const init = async () => {
         document.body.appendChild(modal);
 
         _$('.btn-novo-pedido').addEventListener('click', () => {
+            document.body.classList.remove('modal-open');
             modal.remove();
             carrinho.limpar();
+            atualizarStorage();
             atualizarCarrinho();
         });
 
@@ -237,9 +268,30 @@ const init = async () => {
 
 document.addEventListener('DOMContentLoaded', init);
 
+// Função para verificar se o cliente possui um carrinho ativo
+function iniciarCarrinho() {
 
+    const valoresCarrinho = new Array();
+    const valoresStorage = JSON.parse(carrinhoStorage.getItem('carrinho'));
 
+    if (valoresStorage != null) {
 
+        valoresStorage.forEach(obj => {
 
+            const produtoObject = new Produto(obj.id, obj.nome, obj.marca, obj.descricao, obj.preco, obj.imagem, obj.quantidade);
+            valoresCarrinho.push(produtoObject);
 
+        });
 
+    }
+
+    return new Carrinho(valoresCarrinho);
+
+}
+
+// Associa o carrinho com o local storage
+function atualizarStorage() {
+
+    carrinhoStorage.setItem('carrinho', JSON.stringify(carrinho.listaProdutos));
+
+}
