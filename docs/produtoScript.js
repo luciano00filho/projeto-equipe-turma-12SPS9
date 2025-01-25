@@ -79,9 +79,11 @@ async function init() {
             atualizarStorage();
         }
 
+        console.log(produto.quantidade);
+
         if (produto.quantidade == 0) {
-            addCartIndividual.classList.add('desabilitado');
-            addCartIndividual.classList.remove('habilitado');
+            addCartIndividual.classList.add('habilitado');
+            addCartIndividual.classList.remove('desabilitado');
         }
 
     });
